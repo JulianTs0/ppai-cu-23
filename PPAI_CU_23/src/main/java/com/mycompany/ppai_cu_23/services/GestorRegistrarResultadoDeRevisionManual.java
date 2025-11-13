@@ -18,7 +18,7 @@ public class GestorRegistrarResultadoDeRevisionManual {
 
     private EventoSismico[] eventosAutoDetectados;
 
-    private EventoSismico eventoSeleccionado;
+    private EventoSismico seleccionadoEvento;
 
     private String[] datosEventoSismico;
 
@@ -127,9 +127,9 @@ public class GestorRegistrarResultadoDeRevisionManual {
     public void revisarEventoSeleccionado(int indiceFilaSeleccionada){
         
         // buscar el puntero al EVENTO-SELECCIONADO
-        this.eventoSeleccionado = this.eventosAutoDetectados[indiceFilaSeleccionada];
+        this.seleccionadoEvento = this.eventosAutoDetectados[indiceFilaSeleccionada];
 
-        this.eventoSeleccionado = DataBaseService.getEventoSeleccionado(this.eventoSeleccionado.getId());
+        this.seleccionadoEvento = DataBaseService.getEventoSeleccionado(this.seleccionadoEvento.getId());
 
         // bloquear el EVENTO-SELECCIONADO
         this.bloquearEventoSelecionado();
@@ -146,10 +146,10 @@ public class GestorRegistrarResultadoDeRevisionManual {
         this.logeadoUsuario = this.getUsuarioLogeado();
 
         // bloquear el EVENTO-SELECCIONADO
-        this.eventoSeleccionado.revisar(this.logeadoUsuario, this.fechaHoraActual);
+        this.seleccionadoEvento.revisar(this.logeadoUsuario, this.fechaHoraActual);
 
         // DEBUGGER datos del EVENTO-SELECCIONADO-BLOQUEADO
-        Debugger.datosEventoSeleccionado(this.eventoSeleccionado);  
+        Debugger.datosEventoSeleccionado(this.seleccionadoEvento);
         
     }
     
@@ -166,11 +166,11 @@ public class GestorRegistrarResultadoDeRevisionManual {
     // buscar DATOS-EVENTO-SELECCIONADO
     public String[][] buscarDatosDelEventoSismicoSeleccionado(){
         
-        this.datosEventoSismico = this.eventoSeleccionado.obtenerDatosEventoSismico();
+        this.datosEventoSismico = this.seleccionadoEvento.obtenerDatosEventoSismico();
         
         Debugger.mostrarVector(datosEventoSismico);
         
-        String[][] datosPorSerieTemporal = this.eventoSeleccionado.obtenerDatosSerieTemporal();
+        String[][] datosPorSerieTemporal = this.seleccionadoEvento.obtenerDatosSerieTemporal();
         
         Debugger.mostrarDatosPorSerieTemporal(datosPorSerieTemporal);
         
@@ -223,9 +223,9 @@ public class GestorRegistrarResultadoDeRevisionManual {
         this.logeadoUsuario = this.getUsuarioLogeado();
 
         // rechazar el EVENTO-SELECCIONADO
-        this.eventoSeleccionado.rechazar(this.logeadoUsuario, this.fechaHoraActual);
+        this.seleccionadoEvento.rechazar(this.logeadoUsuario, this.fechaHoraActual);
 
-        Debugger.datosEventoSeleccionado(this.eventoSeleccionado);
+        Debugger.datosEventoSeleccionado(this.seleccionadoEvento);
     }
     
     // validar MAGNITUD

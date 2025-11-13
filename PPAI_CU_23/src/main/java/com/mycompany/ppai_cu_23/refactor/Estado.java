@@ -60,10 +60,10 @@ public abstract class Estado {
         Estado estadoRechazado = new Rechazado(Enums.nombresAmbito.Evento_Sismico.name(), Enums.nombresEstado.Rechazado.name());
         // crear CAMBIO-NUEVO
         CambioDeEstado cambioRechazado = this.crearCambioDeEstado(estadoRechazado, usuario, fechaHoraActual);
-        // actualizar estado actual
-        evento.setEstadoActual(estadoRechazado);
         // actualizar cambio de estado actual
         evento.getCambioDeEstados().add(cambioRechazado);
+        // actualizar estado actual
+        evento.setEstadoActual(estadoRechazado);
         // actualizar la BDD
         DataBaseService.actualizarEventoSismico(evento);
     }
@@ -85,10 +85,10 @@ public abstract class Estado {
         Estado estadoBloqueadoEnRevision = new BloqueadoEnRevision(Enums.nombresAmbito.Evento_Sismico.name(), Enums.nombresEstado.Bloqueado_En_Revision.name());
         // crear CAMBIO-NUEVO
         CambioDeEstado cambioBloqueadoEnRevision = this.crearCambioDeEstado(estadoBloqueadoEnRevision, usuario, fechaHoraActual);
-        // actualizar estado actual
-        evento.setEstadoActual(estadoBloqueadoEnRevision);
         // actualizar cambio de estado actual
         evento.getCambioDeEstados().add(cambioBloqueadoEnRevision);
+        // actualizar estado actual
+        evento.setEstadoActual(estadoBloqueadoEnRevision);
         // actualizar la BDD
         DataBaseService.actualizarEventoSismico(evento);
     }
