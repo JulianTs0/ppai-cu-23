@@ -66,6 +66,7 @@ public abstract class Estado {
         evento.setEstadoActual(estadoRechazado);
         // actualizar la BDD
         DataBaseService.actualizarEventoSismico(evento);
+
     }
 
     public void derivar(){
